@@ -1,6 +1,6 @@
 body{
-    background-image: url(../img/backgroundjpg.jpg);
-   
+    /* background-image: url(../img/backgroundjpg.jpg); mocht er toch een achtergrond nodig zijn*/
+   background-color: rgb(217, 217, 217);
     background-size: contain;
     margin: 0px;
 }
@@ -19,7 +19,7 @@ h1{
 }
 
 header{
-    background-color: rgba(29, 62, 35, 0.95);
+    background-color: rgba(29, 62, 35, 1);
 }
 
 .shopping-list{
@@ -31,7 +31,7 @@ header{
 .listLabel{
     font-size: 1.2rem;
     color: white;
-    background-color: rgba(29, 62, 35, 0.95);
+    background-color: rgba(29, 62, 35, 1);
     padding: 6px;
     margin-bottom: 0.5vh;
     border: solid black 3px;
@@ -61,7 +61,7 @@ header{
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.2rem;
-    background-color: rgba(29, 62, 35, 0.85);
+    background-color: rgba(29, 62, 35, 1);
     color: white;
 }
 
