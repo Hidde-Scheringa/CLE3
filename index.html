@@ -1,32 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>SupermarktScout</title>
-    <script type="text/javascript" src="js/main.js" defer></script>
+	<title>SupermarktScout</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<meta name="description" content="Bekijk bij welke supermarkt je het goedkoopst kan shoppen" />
+	<link type="text/css" rel="stylesheet" href="./css/style.css">
+	<!-- Vue -->
+	<script type="text/javascript" src="./js/vue/vue.min.js"></script>
+	<!-- Text recognition -->
+	<script type="text/javascript" src="./js/tesseract/tesseract.min.js"></script>
+	<script type="text/javascript" src="./js/fuse/fuse.js"></script>
 </head>
 
 <body>
+	<header>
+		<h1>
+			<span class="supermarkt-h1">Supermarkt</span>
+			<span class="scout-h1">Scout</span>
+		</h1>
+	</header>
 
-    <header>
-        <h1>
-            <span>Supermarkt</span>
-            <span class="scoutH1">Scout</span></h1>
-    </header>
+	<main>
+		<div id="supermarktscout">
 
-    <main>
-        <form action="post">
-            <div class="shopping-list" id="shopping-list">
-                <label for="list" class="listLabel">Vul hier uw boodschappenlijst in</label>
-                <textarea name="list" id="list" cols="35" rows="20"></textarea>
+			<div class="shopping-list" v-show="showList">
+				<label for="list" class="listlabel">Vul hier uw boodschappenlijst in</label>
+				<textarea name="list" id="list" cols="35" rows="15" v-model="shoppinglist" @input="update"
+					:disabled="isSearching" title="Vul hier je boodschappenlijst in"></textarea>
+				<button class="submit" @click="search" :disabled="isSearching" title="Vergelijk prijzen">
+					{{ isSearching ? "Bezig met zoeken..." :
+					"Opslaan" }}</button>
+			</div>
 
-                <button type="submit" class="submit">Opslaan</button>
-            </div>
-        </form>
-    </main>
+			<div id="supermarkets" v-show="showSupermarkets">
+				<div>
+					<h2>Totaalprijs</h2>
+					<ul class="supermarket-list-container">
+						<li :class="{'supermarket-list': supermarket.n == selectedSupermarket?.n}"
+							v-for="supermarket in supermarkets" :key="supermarket.n"
+							@click="selectedSupermarket=supermarket; select()">
+
+							
+									<div id="table-info-container" :class="{'supermarket-list-hover': supermarket.n == selectedSupermarket?.n}">
+										
+											<img v-bind:src="supermarket.i" class="supermarket-logo"
+												:title="'Logo ' + supermarket.c">
+									
+											<a href="#" onclick="return false;"
+												:title="supermarket.c + ': ' + $options.filters.formatPrice(supermarket.totalPrice) + ' euro'">
+												{{supermarket.c}}
+											</a>
+											<br>
+												<span v-if="supermarket.notFound > 0">
+													<i class="error-message"></i> {{supermarket.notFound}}
+													product{{supermarket.notFound==1?"":"en"}} niet gevonden.
+											</span>
+										
+										<div class="total-price-container">
+											{{ supermarket.totalPrice | formatPrice }}
+										</div>
+									</div>
+								
+
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="shoppinglist" v-show="selectedSupermarket">
+				<div class="shopping-list-supermarket">
+
+					<h2>{{ selectedSupermarket?.c }}</h2>
+
+					<ul>
+						<li v-for="product in products">
+
+							<table
+								:class="{'item-in-supermarket-shopping-list': !product.link || product.checked, 'strike': product.checked}">
+								<tr>
+									<td>
+										<input type="checkbox" :checked="product.checked"
+											@click="check(product, $event)">
+									</td>
+									<td>
+										<span>
+											<a v-bind:href="product.link" target="_blank" class="noline"
+												:title="product.name + ': ' + $options.filters.formatPrice(product.price)">
+												{{ product.name }}
+											</a>
+										</span><br>
+										<span>
+											<span v-if="product.size">
+												<i class="fa fa-pencil" style="cursor: pointer;"
+													@click="edit(product, $event, 'Bedoelde je soms iets anders? Pas dan de naam van dit product aan.\n\nTip: Hoe specifieker je bent, hoe beter het resultaat. Gebruik bijvoorbeeld &quot;smeerboter&quot; in plaats van &quot;boter&quot; of &quot;1,5 liter halfvolle melk&quot; in plaats van alleen &quot;melk&quot;.')"
+													title="Product aanpassen"></i>
+												{{ product.size | formatAmount }}
+											</span>
+											<span v-if="product.priceNotFound && !product.priceIsEstimate">
+												<i class="fa fa-exclamation-triangle" style="cursor: pointer;"
+													@click="edit(product, $event, 'Dit product kon bij geen enkele supermarket gevonden worden.\n\nPas de naam of hoeveelheid aan op je boodschappenlijst en probeer het opnieuw.')"
+													title="Product aanpassen"></i>
+												Niet gevonden
+											</span>
+											<span v-if="product.priceNotFound && product.priceIsEstimate">
+												Niet gevonden, geschatte prijs
+												<i class="fa fa-question-circle" style="cursor: pointer;"
+													@click="edit(product, $event, 'Het lijkt er op dat deze supermarkt dit product niet onder deze naam op hun website heeft staan. Om toch goed je boodschappenlijstje te kunnen vergelijken, is uitgegaan van de gemiddelde prijs van dit product bij andere winkels.\n\nOm het product toch te kunnen vinden, pas de naam of hoeveelheid aan om iets minder specifiek te zoeken.')"
+													title="Product aanpassen"></i>
+											</span>
+										</span>
+									</td>
+									<td>
+										<a v-bind:href="product.link" target="_blank" class="noline"
+											:title="product.name + ': ' + $options.filters.formatPrice(product.price)">
+											{{ !product.link && product.price ? "~" : "" }}{{ product.price |
+											formatPrice }}
+										</a>
+									</td>
+								</tr>
+							</table>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script type="text/javascript" src="./js/site/script.js"></script>
 </body>
 
 </html>
