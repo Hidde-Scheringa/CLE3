@@ -42,9 +42,11 @@ var app = new Vue(
 						if (this.prices[i]['n'] == "vomar") {
 							this.prices.splice(i, 1)
 						}
+						if (this.prices[i]['n'] == "ah") {
+							this.prices[i]['i'] = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Albert_Heijn_Logo.svg/1956px-Albert_Heijn_Logo.svg.png'
+						}
 					}
 					console.log(this.prices)
-
 
 				});
 			},
@@ -278,40 +280,6 @@ var app = new Vue(
 					this.select();
 				}
 			},
-			share: async function () {
-				window.location.hash = this.shoppinglist.replace(/\n/g, "%0A");
-				var shared = false;
-				// Share the shoppinglist using the device's share functionality
-				if (navigator.share) {
-					try {
-						await navigator.share(
-							{
-								title: "Checkjebon.nl",
-								text: "Je boodschappenlijst van Checkjebon.nl",
-								url: window.location.href
-							});
-						shared = true;
-					}
-					catch (e) {
-						console.log('Error sharing link', e);
-					}
-				}
-				// Share the shoppinglist via email
-				if (!shared) {
-					var body = `Hoi, hier is je boodschappenlijst:`;
-					body += `%0A%0A`;
-					body += encodeURIComponent(this.shoppinglist.split("\n").map(p => "- " + p.trim()).filter(p => p).join("\n"));
-					if (this.selectedSupermarket) {
-						body += `%0A%0A`;
-						body += `De totaalprijs bij ${this.selectedSupermarket.c} komt uit op ${this.$options.filters.formatPrice(this.selectedSupermarket.totalPrice)} euro.`;
-					}
-					body += `%0A%0A`;
-					body += `Ga verder met deze boodschappenlijst via de link hieronder.%0A%0A`;
-					body += encodeURIComponent(window.location.href);
-					window.location = `mailto:?subject=Checkjebon.nl - boodschappenlijst&body=${body}`;
-				}
-				window.location.hash = "";
-			},
 			saveShoppinglist: function () {
 				localStorage.setItem("shoppinglist", this.shoppinglist);
 			},
@@ -333,6 +301,20 @@ var app = new Vue(
 			},
 			clear: function () {
 				this.shoppinglist = "";
+				this.update();
+			},
+			previousStep: function () {
+				if (showSupermarkets == false) {
+					// go back to supermarket list
+					showList = true
+					sleep(0).then(() => { document.getElementById("shopping-list-button").click(); });
+					console.log('return to supermarket choice')
+				} else {
+					// go back to shopping list
+					showList = true
+					showSupermarkets = false
+					console.log('return to shopping list')
+				}
 				this.update();
 			}
 		},
@@ -477,4 +459,8 @@ function compareMinimumAmounts(productAmount, searchAmount) {
 	else {
 		return false;
 	}
+}
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
 }

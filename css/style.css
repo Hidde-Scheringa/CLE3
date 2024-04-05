@@ -36,6 +36,7 @@ h2{
 	font-family: 'fira sans', holtwood one;
 	padding-top: 1vh;
 	padding-bottom: 1vh;
+	box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
 }
 
 .scout-h1 {
@@ -69,7 +70,7 @@ header {
 #list {
 	border: solid black 3px;
 	border-radius: 10px;
-	background-color: rgb(181, 181, 173);
+	background-color: rgb(209, 209, 209);
 	padding: 1vw;
 	padding-top: 2vh;
 	padding-bottom: 2vh;
@@ -81,8 +82,9 @@ header {
 
 .submit {
 	margin-top: 0.5vh;
-	padding-top: 0.5vh;
+	/* padding-top: 0.5vh; */
 	padding-bottom: 0.5vh;
+	margin-bottom: 2vh;
 	width: 100%;
 	border: black solid 3px;
 	border-radius: 10px;
@@ -101,12 +103,14 @@ header {
 .supermarket-list-container{
 	list-style-type: none;
 	padding: 0px;
+	margin-bottom: 5px;
 }
 
 .supermarket-logo{
 	width: 4vw;
 	padding: 0px;
-	border-radius: 30px;
+	border-radius: 20px;
+	background-color: white;
 }
 
 .supermarket-list-hover{
@@ -116,14 +120,15 @@ header {
 #table-info-container{
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	
 	flex-direction: col;
 	border: solid black 3px;
 	border-radius: 10px;
 	padding: 5px;
-	margin-bottom: 2.5vh;
+	margin-top: 2.5vh;
 	background-color: rgb(209, 209, 209);
-	box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75)	
+	box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
+	cursor: pointer;
 }
 
 a{
@@ -134,14 +139,76 @@ a{
 	text-align: center;
 }
 
+.name-supermarket{
+	font-size: 1.3rem;
+	text-align: left;
+}
+
 .total-price-container{
 	font-size: 1.4rem;
 	padding-right: 10px;
 	font-family: 'fira sans', holtwood one;
 }
 
-.error-message{
-	padding-left: 3.4vw;
+.name-and-error-message{
+	display: flex;
+	flex-direction: column;
+	padding-left: 1.5vw;
+	margin-right: 12vw;
+}
+
+.error-message-a{
+	font-size: 1rem;
+	padding-top: 2px;
+	color: rgb(146, 4, 4);
+}
+
+.product-info-container{
+	background-color: rgb(209, 209, 209);
+	box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
+	border: solid black 2px;
+	border-radius: 10px;
+	list-style-type: none;
+	margin-left: -2.45em;
+	margin-bottom: 1.5vh;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.product-name-container{
+	font-size: 1rem;
+	flex: 2;
+}
+
+.name-and-size-container{
+	display: flex;
+	flex-direction: column;
+	padding-left: 1vw;
+	gap: 4px;
+}
+
+.price-container{
+	padding-right: 10px;
+	flex: 1;
+	text-align: right;
+}
+
+.distance-container{
+	margin-left: 1vw;
+	font-family: 'fira sans', holtwood one;
+	font-size: 1.1rem;
+	margin-top: 2px;
+}
+
+.price-and-distance{
+	display: flex;
+	flex-direction: column;
+}
+
+info-container-parent{
+	list-style-position: inside;
 }
 
 @media (width <=480px) {
@@ -172,12 +239,33 @@ a{
 	}
 
 	.supermarket-logo {
-		width: 7vw;
+		width: 9vw;
 		padding: 0px;
 		border-radius: 10px;
 	}
 
+	.name-supermarket {
+		font-size: 1rem;
+		text-align: left;
+	}
+	
+	.total-price-container {
+		font-size: 1.4rem;
+		padding-right: 10px;
+		font-family: 'fira sans', holtwood one;
+	}
 
+	.error-message-a {
+	font-size: 0.7rem;
+	padding-top: 2px;
+	}
+
+	.distance-container {
+		margin-left: 3.5vw;
+		font-family: 'fira sans', holtwood one;
+		font-size: 0.9rem;
+		margin-top: 2px;
+	}
 
 
 }

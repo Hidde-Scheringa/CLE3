@@ -30,7 +30,7 @@
 				<label for="list" class="listlabel">Vul hier uw boodschappenlijst in</label>
 				<textarea name="list" id="list" cols="35" rows="15" v-model="shoppinglist" @input="update"
 					:disabled="isSearching" title="Vul hier je boodschappenlijst in"></textarea>
-				<button class="submit" @click="search" :disabled="isSearching" title="Vergelijk prijzen">
+				<button id="shopping-list-button" class="submit" @click="search" :disabled="isSearching" title="Vergelijk prijzen">
 					{{ isSearching ? "Bezig met zoeken..." :
 					"Opslaan" }}</button>
 			</div>
@@ -43,27 +43,31 @@
 							v-for="supermarket in supermarkets" :key="supermarket.n"
 							@click="selectedSupermarket=supermarket; select()">
 
-							
-									<div id="table-info-container" :class="{'supermarket-list-hover': supermarket.n == selectedSupermarket?.n}">
-										
-											<img v-bind:src="supermarket.i" class="supermarket-logo"
-												:title="'Logo ' + supermarket.c">
-									
-											<a href="#" onclick="return false;"
-												:title="supermarket.c + ': ' + $options.filters.formatPrice(supermarket.totalPrice) + ' euro'">
-												{{supermarket.c}}
-											</a>
-											<br>
-												<span v-if="supermarket.notFound > 0">
-													<i class="error-message"></i> {{supermarket.notFound}}
-													product{{supermarket.notFound==1?"":"en"}} niet gevonden.
-											</span>
-										
-										<div class="total-price-container">
-											{{ supermarket.totalPrice | formatPrice }}
-										</div>
-									</div>
-								
+
+							<div id="table-info-container"
+								:class="{'supermarket-list-hover': supermarket.n == selectedSupermarket?.n}">
+
+								<img v-bind:src="supermarket.i" class="supermarket-logo"
+									:title="'Logo ' + supermarket.c">
+							<div class="name-and-error-message">
+								<a class="name-supermarket" href="#" onclick="return false;"
+									:title="supermarket.c + ': ' + $options.filters.formatPrice(supermarket.totalPrice) + ' euro'">
+									{{supermarket.c}}
+								</a>
+								<span class="error-message-a" v-if="supermarket.notFound > 0">
+									<i class="error-message"></i> {{supermarket.notFound}}
+									product{{supermarket.notFound==1?"":"en"}} niet gevonden.
+								</span>
+							</div>
+							<div class="price-and-distance">
+								<div class="total-price-container">
+									€{{ supermarket.totalPrice | formatPrice }}
+								</div>
+								<div class="distance-container">
+									5.1km
+								</div>
+							</div>
+
 
 						</li>
 					</ul>
@@ -75,60 +79,68 @@
 
 					<h2>{{ selectedSupermarket?.c }}</h2>
 
-					<ul>
-						<li v-for="product in products">
+					<ul class="info-container-parent">
+						<li class="product-info-container" v-for="product in products">
 
-							<table
-								:class="{'item-in-supermarket-shopping-list': !product.link || product.checked, 'strike': product.checked}">
-								<tr>
-									<td>
-										<input type="checkbox" :checked="product.checked"
-											@click="check(product, $event)">
-									</td>
-									<td>
+
+							<tr class="product-info-container">
+								<td>
+									<input type="checkbox" :checked="product.checked" @click="check(product, $event)">
+								</td>
+								<td>
+									<div class="name-and-size-container">
 										<span>
-											<a v-bind:href="product.link" target="_blank" class="noline"
+											<a v-bind:href="product.link" target="_blank" class="product-name-container"
 												:title="product.name + ': ' + $options.filters.formatPrice(product.price)">
 												{{ product.name }}
 											</a>
-										</span><br>
+										</span>
 										<span>
 											<span v-if="product.size">
-												<i class="fa fa-pencil" style="cursor: pointer;"
+												<i class="product-size-container" style="cursor: pointer;"
 													@click="edit(product, $event, 'Bedoelde je soms iets anders? Pas dan de naam van dit product aan.\n\nTip: Hoe specifieker je bent, hoe beter het resultaat. Gebruik bijvoorbeeld &quot;smeerboter&quot; in plaats van &quot;boter&quot; of &quot;1,5 liter halfvolle melk&quot; in plaats van alleen &quot;melk&quot;.')"
 													title="Product aanpassen"></i>
 												{{ product.size | formatAmount }}
 											</span>
+
 											<span v-if="product.priceNotFound && !product.priceIsEstimate">
 												<i class="fa fa-exclamation-triangle" style="cursor: pointer;"
 													@click="edit(product, $event, 'Dit product kon bij geen enkele supermarket gevonden worden.\n\nPas de naam of hoeveelheid aan op je boodschappenlijst en probeer het opnieuw.')"
 													title="Product aanpassen"></i>
 												Niet gevonden
 											</span>
-											<span v-if="product.priceNotFound && product.priceIsEstimate">
-												Niet gevonden, geschatte prijs
-												<i class="fa fa-question-circle" style="cursor: pointer;"
-													@click="edit(product, $event, 'Het lijkt er op dat deze supermarkt dit product niet onder deze naam op hun website heeft staan. Om toch goed je boodschappenlijstje te kunnen vergelijken, is uitgegaan van de gemiddelde prijs van dit product bij andere winkels.\n\nOm het product toch te kunnen vinden, pas de naam of hoeveelheid aan om iets minder specifiek te zoeken.')"
-													title="Product aanpassen"></i>
-											</span>
-										</span>
-									</td>
-									<td>
-										<a v-bind:href="product.link" target="_blank" class="noline"
-											:title="product.name + ': ' + $options.filters.formatPrice(product.price)">
-											{{ !product.link && product.price ? "~" : "" }}{{ product.price |
-											formatPrice }}
-										</a>
-									</td>
-								</tr>
-							</table>
+									</div>
+									<span v-if="product.priceNotFound && product.priceIsEstimate">
+										Niet gevonden, geschatte prijs
+										<i class="fa fa-question-circle" style="cursor: pointer;"
+											@click="edit(product, $event, 'Het lijkt er op dat deze supermarkt dit product niet onder deze naam op hun website heeft staan. Om toch goed je boodschappenlijstje te kunnen vergelijken, is uitgegaan van de gemiddelde prijs van dit product bij andere winkels.\n\nOm het product toch te kunnen vinden, pas de naam of hoeveelheid aan om iets minder specifiek te zoeken.')"
+											title="Product aanpassen"></i>
+									</span>
+									</span>
+								</td>
+								<td>
+									<a v-bind:href="product.link" target="_blank" class="price-container"
+										:title="product.name + ': ' + $options.filters.formatPrice(product.price)">
+										{{ !product.link && product.price ? "~" : "" }}{{ product.price |
+										formatPrice }}
+									</a>
+								</td>
+							</tr>
+
+						</li>
+						<li class="totalPrice-selected-supermarket">
+							<span>Totaalprijs</span>
+							<p>{{ selectedSupermarket?.totalPrice |
+								formatPrice}}</p>
 						</li>
 					</ul>
 				</div>
+			</div>
+			<div v-show="!showList">
+				<button class="submit" @click="previousStep">Ga terug</button>
 			</div>
 		</div>
 	</main>
 	<script type="text/javascript" src="./js/site/script.js"></script>
 </body>
-
 </html>
