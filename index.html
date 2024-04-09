@@ -28,8 +28,8 @@
 
 			<div class="shopping-list" v-show="showList">
 				<label for="list" class="listlabel">Vul hier uw boodschappenlijst in</label>
-				<textarea name="list" id="list" cols="35" rows="13" v-model="shoppinglist" @input="update"
-					:disabled="isSearching" title="Vul hier je boodschappenlijst in"></textarea>
+				<textarea name="list" id="list" cols="35" rows="13" @input="update"
+			title="Vul hier je boodschappenlijst in"></textarea>
 				<button id="shopping-list-button" class="submit" @click="search" :disabled="isSearching" title="Vergelijk prijzen">
 					{{ isSearching ? "Bezig met zoeken..." :
 					"Bereken prijs" }}</button>
