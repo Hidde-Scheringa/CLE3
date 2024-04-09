@@ -22,7 +22,7 @@ var app = new Vue(
 				}).then((prices) => {
 					this.prices = prices;
 
-					// Remove excesive supermarkets from the list - and add hardcoded location
+					// Remove excesive supermarkets from the list
 					for (let i = 0; i < this.prices.length; i++) {
 						if (this.prices[i]['n'] == "dekamarkt") {
 							this.prices.splice(i, 1)
@@ -44,22 +44,6 @@ var app = new Vue(
 						}
 						if (this.prices[i]['n'] == "ah") {
 							this.prices[i]['i'] = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Albert_Heijn_Logo.svg/1956px-Albert_Heijn_Logo.svg.png'
-							this.prices[i]['b'] = '550 m'
-						}
-						if (this.prices[i]['n'] == "aldi") {
-							this.prices[i]['b'] = '1,3 km'
-						}
-						if (this.prices[i]['n'] == "jumbo") {
-							this.prices[i]['b'] = '130 m'
-						}
-						if (this.prices[i]['n'] == "dirk") {
-							this.prices[i]['b'] = '1,2 km'
-						}
-						if (this.prices[i]['n'] == "hoogvliet") {
-							this.prices[i]['b'] = '3,6 km'
-						}
-						if (this.prices[i]['n'] == "coop") {
-							this.prices[i]['b'] = '1,4 km'
 						}
 					}
 					console.log(this.prices)
@@ -179,7 +163,7 @@ var app = new Vue(
 					});
 				});
 
-				// For products without a price, find the average price among other supermarkets to get an approximation. 
+				// For products without a price, find the average price among other supermarkets to get an approximation.
 				this.supermarkets.map(supermarket => {
 					this.products.map(product => {
 						var existing = findProduct(supermarket.d, product.name);
@@ -242,7 +226,7 @@ var app = new Vue(
 					return product;
 				});
 
-				// For products without a price, find the average price among other supermarkets to get an approximation. 
+				// For products without a price, find the average price among other supermarkets to get an approximation.
 				this.products.filter(product => !product.price && !product.link).map(product => {
 					var price = 0;
 					var count = 0;
@@ -324,10 +308,12 @@ var app = new Vue(
 					// go back to supermarket list
 					showList = true
 					sleep(0).then(() => { document.getElementById("shopping-list-button").click(); });
+					console.log('return to supermarket choice')
 				} else {
 					// go back to shopping list
 					showList = true
 					showSupermarkets = false
+					console.log('return to shopping list')
 				}
 				this.update();
 			}
@@ -390,7 +376,7 @@ function findProducts(products, value) {
 			return patterns.every(pattern => pattern.test(product.n));
 		});
 	}
-	// When an amount is specified, return the product that meets this minimum amount.	
+	// When an amount is specified, return the product that meets this minimum amount.  
 	if (amount) {
 		var baseAmount = convertAmountToBase(amount);
 		productMatches = productMatches.filter(product => compareMinimumAmounts(convertAmountToBase(product.s), baseAmount));

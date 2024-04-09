@@ -1,279 +1,282 @@
+/* Dit font is voor de text in de shoppinglist */
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+/* Deze font is voor de h1 */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Fira+Sans&family=Holtwood+One+SC&family=Permanent+Marker&family=Righteous&display=swap');
- 
+
+
 body {
-    /* background-image: url(../img/backgroundjpg.jpg); mocht er toch een achtergrond nodig zijn*/
-    background-color: rgb(240, 239, 239);
-    background-size: contain;
-    margin: 0px;
+	/* background-image: url(../img/backgroundjpg.jpg); mocht er toch een achtergrond nodig zijn*/
+	background-color: rgb(240, 239, 239);
+	background-size: contain;
+	margin: 0px;
 }
- 
+
 main {
-    width: 30%;
-    margin: auto;
-    margin-top: 0px;
+	width: 30%;
+	margin: auto;
+	margin-top: 0px;
 }
- 
+
 h1 {
-    margin-top: 0px;
-    text-align: center;
-    padding: 1vh;
-    color: rgb(166, 255, 0);
-    font-family: 'fira sans', holtwood one;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+	margin-top: 0px;
+	text-align: center;
+	padding: 1vh;
+	color: rgb(166, 255, 0);
+	font-family: 'fira sans', holtwood one;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
 }
- 
+
 h2 {
-    text-align: center;
-    border: solid black 2px;
-    border-radius: 10px;
-    background-color: rgba(29, 62, 35, 1);
-    color: white;
-    font-family: 'fira sans', holtwood one;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
+	text-align: center;
+	border: solid black 2px;
+	border-radius: 10px;
+	background-color: rgba(29, 62, 35, 1);
+	color: white;
+	font-family: 'fira sans', holtwood one;
+	padding-top: 1vh;
+	padding-bottom: 1vh;
+	box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
 }
- 
+
 .scout-h1 {
-    color: #43bdcc;
+	color: #43bdcc;
 }
- 
+
 header {
-    background-color: rgba(29, 62, 35, 1);
+	background-color: rgba(29, 62, 35, 1);
 }
- 
+
 .shopping-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
- 
+
 .listlabel {
-    font-size: 1.2rem;
-    color: rgb(224, 224, 224);
-    font-family: 'fira sans', holtwood one;
-    background-color: rgba(29, 62, 35, 1);
-    padding: 6px;
-    margin-bottom: 0.5vh;
-    border: solid black 3px;
-    border-radius: 10px;
-    width: 95%;
-    text-align: center;
-    margin-top: 2vh;
+	font-size: 1.2rem;
+	color: rgb(224, 224, 224);
+	font-family: 'fira sans', holtwood one;
+	background-color: rgba(29, 62, 35, 1);
+	padding: 6px;
+	margin-bottom: 0.5vh;
+	border: solid black 3px;
+	border-radius: 10px;
+	width: 95%;
+	text-align: center;
+	margin-top: 2vh;
 }
- 
+
 #list {
-    border: solid black 3px;
-    border-radius: 10px;
-    background-color: rgb(209, 209, 209);
-    padding: 1vw;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    width: 90%;
-    font-size: 1.5rem;
-    font-family: 'kalam';
-    color: rgb(48, 46, 46);
+	border: solid black 3px;
+	border-radius: 10px;
+	background-color: rgb(209, 209, 209);
+	padding: 1vw;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+	width: 90%;
+	font-size: 1.5rem;
+	font-family: 'kalam';
+	color: rgb(48, 46, 46);
 }
- 
+
 .submit {
-    margin-top: 0.5vh;
-    /* padding-top: 0.5vh; */
-    padding-bottom: 0.5vh;
-    margin-bottom: 2vh;
-    width: 100%;
-    border: black solid 3px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    background-color: rgba(29, 62, 35, 1);
-    color: rgb(230, 230, 230);
-    font-family: 'fira sans', holtwood one;
+	margin-top: 0.5vh;
+	/* padding-top: 0.5vh; */
+	padding-bottom: 0.5vh;
+	margin-bottom: 2vh;
+	width: 100%;
+	border: black solid 3px;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 1.2rem;
+	background-color: rgba(29, 62, 35, 1);
+	color: rgb(230, 230, 230);
+	font-family: 'fira sans', holtwood one;
 }
- 
+
 .submit:hover{
-    background-color: rgb(240, 239, 239);
-    border: rgba(29, 62, 35, 1) solid 3px;
-    border-radius: 10px;
-    color: rgba(29, 62, 35, 1);
- 
+	background-color: rgb(240, 239, 239);
+	border: rgba(29, 62, 35, 1) solid 3px;
+	border-radius: 10px;
+	color: rgba(29, 62, 35, 1);
+
 }
- 
+
 #supermarkets {
-    width: 100%;
-    margin: auto;
+	width: 100%;
+	margin: auto;
 }
- 
+
 .supermarket-list-container {
-    list-style-type: none;
-    padding: 0px;
-    margin-bottom: 5px;
+	list-style-type: none;
+	padding: 0px;
+	margin-bottom: 5px;
 }
- 
+
 .supermarket-logo {
-    width: 4vw;
-    padding: 0px;
-    border-radius: 20px;
-    background-color: white;
+	width: 4vw;
+	padding: 0px;
+	border-radius: 20px;
+	background-color: white;
 }
- 
+
 .supermarket-list-hover {
-    display: flex;
+	display: flex;
 }
- 
+
 #table-info-container {
-    display: flex;
-    align-items: center;
- 
-    flex-direction: col;
-    justify-content: space-between;
-    border: solid rgb(185, 185, 185) 3px;
-    border-radius: 10px;
-    padding: 5px;
-    margin-top: 2.5vh;
-    background-color: rgb(209, 209, 209);
-    box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+
+	flex-direction: col;
+	justify-content: space-between;
+	border: solid rgb(185, 185, 185) 3px;
+	border-radius: 10px;
+	padding: 5px;
+	margin-top: 2.5vh;
+	background-color: rgb(209, 209, 209);
+	box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
+	cursor: pointer;
 }
- 
+
 a {
-    color: black;
-    font-family: 'fira sans', holtwood one;
-    text-decoration: none;
-    font-size: 1.5rem;
-    text-align: center;
+	color: black;
+	font-family: 'fira sans', holtwood one;
+	text-decoration: none;
+	font-size: 1.5rem;
+	text-align: center;
 }
- 
+
 .name-supermarket {
-    font-size: 1.3rem;
-    text-align: left;
+	font-size: 1.3rem;
+	text-align: left;
 }
- 
+
 .total-price-container {
-    font-size: 1.4rem;
-    font-family: 'fira sans', holtwood one;
+	font-size: 1.4rem;
+	font-family: 'fira sans', holtwood one;
 }
- 
+
 .name-and-error-message {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
- 
+
 .error-message-a {
-    font-size: 1rem;
-    padding-top: 2px;
-    color: rgb(146, 4, 4);
+	font-size: 1rem;
+	padding-top: 2px;
+	color: rgb(146, 4, 4);
 }
- 
+
 .product-info-container {
-    background-color: rgb(209, 209, 209);
-    box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
-    border: solid rgb(185, 185, 185) 2px;
-    border-radius: 10px;
-    list-style-type: none;
-    margin-left: -2.45em;
-    margin-bottom: 1.5vh;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
+	background-color: rgb(209, 209, 209);
+	box-shadow: 13px 13px 22px -12px rgba(0, 0, 0, 0.75);
+	border: solid rgb(185, 185, 185) 2px;
+	border-radius: 10px;
+	list-style-type: none;
+	margin-left: -2.45em;
+	margin-bottom: 1.5vh;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
 }
- 
+
 .product-name-container {
-    font-size: 1rem;
-    flex: 2;
+	font-size: 1rem;
+	flex: 2;
 }
- 
+
 .name-and-size-container {
-    display: flex;
-    flex-direction: column;
-    padding-left: 1vw;
-    gap: 4px;
-    font-family: 'fira sans', holtwood one;
+	display: flex;
+	flex-direction: column;
+	padding-left: 1vw;
+	gap: 4px;
+	font-family: 'fira sans', holtwood one;
 }
- 
+
 .product-not-found-container{
-    color: rgb(146, 4, 4);
+	color: rgb(146, 4, 4);
 }
- 
+
 .size-and-error-container{
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
- 
+
 .price-container {
-    padding-right: 10px;
-    flex: 1;
-    text-align: right;
+	padding-right: 10px;
+	flex: 1;
+	text-align: right;
 }
- 
+
 .distance-container {
-    font-family: 'fira sans', holtwood one;
-    font-size: 1.1rem;
+	font-family: 'fira sans', holtwood one;
+	font-size: 1.1rem;
 }
- 
+
 .price-and-distance {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
 }
- 
+
 .info-container-parent {
-    list-style-position: inside;
-    margin-bottom: 0px;
+	list-style-position: inside;
+	margin-bottom: 0px;
 }
- 
+
 .size-a-container{
-    font-family: 'fira sans', holtwood one;
+	font-family: 'fira sans', holtwood one;
 }
- 
+
 .totalPrice-selected-supermarket{
-    border: black solid 0;
-    border-top-width: 2px;
-    list-style-type: none;
-    margin-left: -2.05em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.2rem;
-    font-family: 'fira sans', holtwood one;
-    padding-right: 1vw;
-    padding-left: 1vw;
+	border: black solid 0;
+	border-top-width: 2px;
+	list-style-type: none;
+	margin-left: -2.05em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.2rem;
+	font-family: 'fira sans', holtwood one;
+	padding-right: 1vw;
+	padding-left: 1vw;
 }
- 
+
 input[type="checkbox"] {
-    transform: scale(1.5);
+	transform: scale(1.5);
 }
- 
+
 @media (width <=480px) {
-    main {
-        width: 65%;
-    }
- 
-    #list {
-        width: 96%;
-        font-size: 1.2rem;
-    }
- 
-    .supermarket-logo {
-        width: 9vw;
-        border-radius: 10px;
-    }
- 
-    .name-supermarket {
-        font-size: 1rem;
-    }
- 
-    .error-message-a {
-        font-size: 0.7rem;
-    }
- 
-    .distance-container {
-        font-size: 0.9rem;
-    }
- 
-    .name-and-size-container {
-        padding-left: 2.5vw;
-    }
+	main {
+		width: 65%;
+	}
+
+	#list {
+		width: 96%;
+		font-size: 1.2rem;
+	}
+
+	.supermarket-logo {
+		width: 9vw;
+		border-radius: 10px;
+	}
+
+	.name-supermarket {
+		font-size: 1rem;
+	}
+
+	.error-message-a {
+		font-size: 0.7rem;
+	}
+
+	.distance-container {
+		font-size: 0.9rem;
+	}
+
+	.name-and-size-container {
+		padding-left: 2.5vw;
+	}
 }
