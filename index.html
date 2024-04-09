@@ -121,7 +121,7 @@
 								</div>
 								</td>
 								<td>
-									<a v-bind:href="" target="_blank" class="price-container"
+									<a target="_blank" class="price-container"
 										:title="product.name + ': ' + $options.filters.formatPrice(product.price)">
 										{{ !product.link && product.price ? "~" : "" }}€{{ product.price | formatPrice }}
 									</a>
