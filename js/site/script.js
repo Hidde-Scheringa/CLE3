@@ -44,6 +44,22 @@ var app = new Vue(
 						}
 						if (this.prices[i]['n'] == "ah") {
 							this.prices[i]['i'] = 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Albert_Heijn_Logo.svg/1956px-Albert_Heijn_Logo.svg.png'
+							this.prices[i]['b'] = '550 m'
+						}
+						if (this.prices[i]['n'] == "aldi") {
+							this.prices[i]['b'] = '1,3 km'
+						}
+						if (this.prices[i]['n'] == "jumbo") {
+							this.prices[i]['b'] = '130 m'
+						}
+						if (this.prices[i]['n'] == "dirk") {
+							this.prices[i]['b'] = '1,2 km'
+						}
+						if (this.prices[i]['n'] == "hoogvliet") {
+							this.prices[i]['b'] = '3,6 km'
+						}
+						if (this.prices[i]['n'] == "coop") {
+							this.prices[i]['b'] = '1,4 km'
 						}
 					}
 					console.log(this.prices)
